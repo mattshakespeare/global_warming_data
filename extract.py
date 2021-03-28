@@ -22,6 +22,8 @@ def open_file_CO2_data():
     
     return csv_data_list
 
+
+
 def open_file_global_temps():
     
     bucket = 'myglobalwarmingdata'
@@ -41,4 +43,14 @@ def open_file_global_temps():
         csv_list_data.append(item)
 
     return csv_list_data
+
+
+def extract_world_data(data):
+    
+    global_data = []
+    for dic in data:
+        if 'World' in dic.keys():
+            global_data.append(dic)
+            
+    return global_data
     

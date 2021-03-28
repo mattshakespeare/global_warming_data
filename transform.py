@@ -77,19 +77,14 @@ def organise_co2_data(data):
     
     return co2_list
 
-def create_co2_dataframe(data):
+def remove_null_values(data):
     
-    countries = []
-    data = []
-    for dic in data:
-        for key, values in dic.items():
-            countries.append(key)
-            for value in values.values():
-                data.append(value)
-            
-    index = [i for i in range(1960,2021)]
+    for row in data:
+        for item in row.values():
+            for key, value in item.items():
+                if value == '':
+                    del item[key]
     
-    dataframe = pd.DataFrame(columns=countries, index=index, data=data)
-    print(dataframe)
+                
     
     
