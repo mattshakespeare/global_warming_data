@@ -59,7 +59,7 @@ def create_dataframe(data):
     
     return dataframe
 
-def organise_CO2_data(data):
+def organise_co2_data(data):
     
     del data[0]
     
@@ -68,15 +68,28 @@ def organise_CO2_data(data):
         if len(row) == 4:
             year_list.append(row)
     
-    CO2_list = []
+    co2_list = []
     for row in data:
         if row[''] == 'Total greenhouse gas emissions (kt of CO2 equivalent)':
             del row[None][0]
-            CO2_dict = {row['\ufeff"Data Source"'] : dict(zip(year_list,row[None]))}
-            CO2_list.append(CO2_dict)
+            co2_dict = {row['\ufeff"Data Source"'] : dict(zip(year_list,row[None]))}
+            co2_list.append(co2_dict)
     
-    return CO2_list
-    
-            
+    return co2_list
 
+def create_co2_dataframe(data):
+    
+    countries = []
+    data = []
+    for dic in data:
+        for key, values in dic.items():
+            countries.append(key)
+            for value in values.values():
+                data.append(value)
+            
+    index = [i for i in range(1960,2021)]
+    
+    dataframe = pd.DataFrame(columns=countries, index=index, data=data)
+    print(dataframe)
+    
     

@@ -16,7 +16,8 @@ from transform import create_dataframe
 from transform import yearly_average_temps
 from transform import create_id
 from transform import convert_type
-from transform import organise_CO2_data
+from transform import organise_co2_data
+from transform import create_co2_dataframe
 
 
 '''Exracting the data into different forms from global warming temps csv'''
@@ -30,7 +31,9 @@ mean_yearly_temps_dataframe = create_id(mean_yearly_temps_dataframe)
 
 '''Extracting data from CO2 emissions csv'''
 raw_data = open_file_CO2_data() 
-organised_data = organise_CO2_data(raw_data)
+organised_data = organise_co2_data(raw_data)
+co2_dataframe = create_co2_dataframe(organised_data)
+
 
 
 '''menu functions'''
