@@ -58,3 +58,36 @@ def create_dataframe(data):
     dataframe = dataframe.drop(0)
     
     return dataframe
+
+def organise_CO2_data(data):
+    
+    del data[0]
+    
+    year_list = []
+    for row in data[0][None]:
+        if len(row) == 4:
+            year_list.append(row)
+    
+    countries = []
+    for row in data:
+        if row['\ufeff"Data Source"'] not in countries:
+            countries.append(row['\ufeff"Data Source"'])
+    del countries[0]
+    
+    CO2_list = []
+    for row in data:
+        if row[''] == 'Total greenhouse gas emissions (kt of CO2 equivalent)':
+            del row[None][0]
+            CO2_list.append(row['\ufeff"Data Source"'])
+            for i in range(len(year_list)):
+                CO2_list.append(
+                                {
+                                    year_list[i]:row[None][i]
+                                })
+    
+    for row in CO2_list:
+        print(row)
+                
+            
+
+    
