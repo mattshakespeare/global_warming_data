@@ -19,6 +19,7 @@ from transform import create_id
 from transform import convert_type
 from transform import organise_co2_data
 from transform import remove_null_values
+from transform import create_co2_dataframe
 
 
 
@@ -36,6 +37,7 @@ raw_data = open_file_CO2_data()
 organised_data = organise_co2_data(raw_data)
 global_data = extract_world_data(organised_data)
 global_data = remove_null_values(global_data)
+co2_dataframe = create_co2_dataframe(global_data)
 
 
 

@@ -81,9 +81,21 @@ def remove_null_values(data):
     
     for row in data:
         for item in row.values():
-            for key, value in item.items():
-                if value == '':
-                    del item[key]
+            for value in item.copy():
+                if item[value] == '':
+                    del item[value]
+    return data
+
+def create_co2_dataframe(data):
+    
+    world_data = []
+    for dic in data:
+        dataframe = pd.DataFrame.from_dict(data=dic, orient='columns')
+    return dataframe
+    
+    
+            
+            
     
                 
     
